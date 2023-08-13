@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [base, setBase] = useState("Malinowa");
+	const [fruit, setFruit] = useState("Truskawka");
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	function handleBaseChange(e: any) {
+		setBase(e.target.value);
+	}
+
+	function handleFruitChange(e: any) {
+		setFruit(e.target.value);
+	}
+
+	function handleOrder(e: any) {
+		alert("Teraz sobie możesz taki upiec :P");
+	}
+
+	return (
+		<div>
+			<h1 className='MainHeading'>Stwórz swój własny tort!</h1>
+			<div className='Wrapper'>
+				<div className='Cake'>
+					<img src={`${base}.png`}></img>
+					<img
+						className='Fruit'
+						src={`${fruit}.png`}
+					></img>
+				</div>
+				<div className='Maker'>
+					<h2>Baza</h2>
+					<select
+						onChange={handleBaseChange}
+						className='Select'
+						placeholder='Wybierz baze'
+					>
+						<option>Malinowa</option>
+						<option>Czekoladowa</option>
+					</select>
+					<h2>Owoc</h2>
+					<select
+						onChange={handleFruitChange}
+						className='Select'
+						placeholder='Wybierz owoc'
+					>
+						<option>Truskawka</option>
+						<option>Jagoda</option>
+					</select>
+				</div>
+			</div>
+			<button
+				onClick={handleOrder}
+				className='ReadyButton'
+			>
+				Gotowe
+			</button>
+		</div>
+	);
 }
 
-export default App
+export default App;
